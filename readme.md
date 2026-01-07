@@ -34,7 +34,7 @@ All `/logs` endpoints require the API key. `/users` endpoints are open for teach
 Create a user:
 
 ```bash
-curl -X POST http://localhost:5000/users \
+curl -X POST http://localhost:5000/api/v1/users \
   -H "Content-Type: application/json" \
   -d '{"username":"alex","password":"secret","role":"manager"}'
 ```
@@ -42,7 +42,7 @@ curl -X POST http://localhost:5000/users \
 Log in:
 
 ```bash
-curl -X POST http://localhost:5000/users/login \
+curl -X POST http://localhost:5000/api/v1/users/login \
   -H "Content-Type: application/json" \
   -d '{"username":"alex","password":"secret"}'
 ```
@@ -50,7 +50,7 @@ curl -X POST http://localhost:5000/users/login \
 Create a maintenance log (API key required):
 
 ```bash
-curl -X POST http://localhost:5000/logs \
+curl -X POST http://localhost:5000/api/v1/logs \
   -H "Content-Type: application/json" \
   -H "X-API-Key: api_warehouse_student_key_1234567890abcdef" \
   -d '{"title":"Replace filter","description":"HVAC filter replacement","priority":"high","status":"open","user_id":1}'
@@ -150,7 +150,7 @@ class WarehouseApi {
 ### Example usage in Flutter
 
 ```dart
-final api = WarehouseApi(baseUrl: 'http://10.0.2.2:5000');
+final api = WarehouseApi(baseUrl: 'http://10.0.2.2:5000/api/v1/');
 
 final user = await api.createUser(
   username: 'alex',
